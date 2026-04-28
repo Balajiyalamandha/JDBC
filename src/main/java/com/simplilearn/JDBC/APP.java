@@ -1,5 +1,9 @@
 package com.simplilearn.JDBC;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.simplilearn.JDBC.dao.CustomerDAO;
 import com.simplilearn.JDBC.impl.CustomerDAOImpl;
 import com.simplilearn.JDBC.model.Customer;
@@ -11,14 +15,20 @@ public class APP {
         CustomerDAO dao = (CustomerDAO) new CustomerDAOImpl();
 
         Customer c = new Customer();
-        c.setName("Balaji");
-        c.setPhone("9876543210");
+        c.setName("Balaji Y");
+        c.setPhone("9876543218");
         c.setEmail("balaji@gmail.com");
         c.setAge(29);
         c.setTemperature(98.6f);
 
-        dao.createCustomer(c);
-
-        System.out.println(dao.getAllCustomers());
+       // dao.createCustomer(c);
+      //  dao.updateCustomer(c);
+      //  dao.deleteCustomer(1);
+        List<Customer> customers = dao.getAllCustomers();
+        for (Customer customer: customers) {
+			
+        	 System.out.println(dao.getAllCustomers());
+		}
+       
     }
 }

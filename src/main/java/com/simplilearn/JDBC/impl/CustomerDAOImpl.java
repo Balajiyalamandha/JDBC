@@ -69,7 +69,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         	String sql = "UPDATE customers SET name=?, phone=?, email=?, age=?, temperature=? WHERE cid=?";
 
         	PreparedStatement ps = connection.prepareStatement(sql);
-
+           
         	ps.setString(1, customer.getName());
         	ps.setString(2, customer.getPhone());
         	ps.setString(3, customer.getEmail());
@@ -98,8 +98,31 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
     }
 
-	public Object getAllCustomers1() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Customer> getAllCustomers1(PreparedStatement PreparedStatement) {
+		List<Customer> customers = new ArrayList<Customer>();
+	
+		
+				try {
+					String sql = "select * from customers";
+					PreparedStatement = connection.prepareStatement(sql);
+					ResultSet set=	PreparedStatement.executeQuery();
+					
+					while(set.next()) {
+						
+						Customer customer = new Customer();
+						customer.setCid(set.getInt(1));
+						customer.setName(set.getString(2));
+						customer.setPhone(set.getString(3));
+						customer.setEmail(set.getString(4));
+						customer.setAge(set.getInt(5));
+					}
+					
+						
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				return null;
+	
 	}
 }
